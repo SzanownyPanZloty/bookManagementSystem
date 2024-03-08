@@ -1,7 +1,7 @@
 # Book management system (WIP)
 
 ## Project Dependencies
-- [JavaFX](ttps://openjfx.io/)
+- [JavaFX](https://openjfx.io/)
 - [SQLite JDBC](https://github.com/xerial/sqlite-jdbc)
 
 ```json
