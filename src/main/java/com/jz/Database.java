@@ -1,3 +1,5 @@
+package com.jz;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,9 +7,13 @@ import java.sql.SQLException;
 public class Database {
   public static Connection getConnection() {
     Connection conn = null;
+
+    String url = "jdbc:mysql://localhost:3306/booksDB";
+    String username = "root";
+    String password = "root";
+
     try {
-      String CONNECTION_URL = "jdbc:sqlite:" + System.getProperty("user.dir") + "/bookDatabase.db";
-      conn = DriverManager.getConnection(CONNECTION_URL);
+      conn = DriverManager.getConnection(url, username, password);
     } catch (SQLException ex) {
       System.out.println("Connecting with database failed.");
     }

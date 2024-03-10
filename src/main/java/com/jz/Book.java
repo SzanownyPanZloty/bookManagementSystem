@@ -1,3 +1,5 @@
+package com.jz;
+
 public class Book {
   private Integer id;
   private String name;
@@ -7,51 +9,51 @@ public class Book {
 
   // Constructor
   public Book(Integer id, String name, String author, String genre, Integer year) {
-      this.id = id;
-      this.name = name;
-      this.author = author;
-      this.genre = genre;
-      this.year = year;
+    this.id = id;
+    this.name = name;
+    this.author = author;
+    this.genre = genre;
+    this.year = year;
   }
 
   // Getters and setters
   public Integer getId() {
-      return id;
+    return id;
   }
 
   public void setId(Integer id) {
-      this.id = id;
+    this.id = id;
   }
 
   public String getName() {
-      return name;
+    return name;
   }
 
   public void setName(String name) {
-      this.name = name;
+    this.name = name;
   }
 
   public String getAuthor() {
-      return author;
+    return author;
   }
 
   public void setAuthor(String author) {
-      this.author = author;
+    this.author = author;
   }
 
   public String getGenre() {
-      return genre;
+    return genre;
   }
 
   public void setGenre(String genre) {
-      this.genre = genre;
+    this.genre = genre;
   }
 
   public Integer getYear() {
-      return year;
+    return year;
   }
 
   public void setYear(Integer year) {
-      this.year = year;
+    this.year = year;
   }
 }
