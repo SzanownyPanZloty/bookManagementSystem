@@ -133,7 +133,6 @@ public class AppController {
       statement.setString(3, newBookGenre.getText());
       statement.setInt(4, Integer.parseInt(newBookYear.getText()));
       statement.setString(5, newBookDescription.getText());
-      // TODO add description and add field
       int rowsInserted = statement.executeUpdate();
       if (rowsInserted > 0) {
         statusLabel.setText("A new book was added successfully!");
