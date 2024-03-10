@@ -6,17 +6,17 @@ import java.sql.SQLException;
 
 public class Database {
   public static Connection getConnection() {
-    Connection conn = null;
+    Connection con = null;
 
     String url = "jdbc:mysql://localhost:3306/booksDB";
     String username = "root";
     String password = "root";
 
     try {
-      conn = DriverManager.getConnection(url, username, password);
-    } catch (SQLException ex) {
+      con = DriverManager.getConnection(url, username, password);
+    } catch (SQLException e) {
       System.out.println("Connecting with database failed.");
     }
-    return conn;
+    return con;
   }
 }

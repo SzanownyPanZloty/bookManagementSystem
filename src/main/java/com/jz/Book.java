@@ -6,19 +6,20 @@ public class Book {
   private String author;
   private String genre;
   private Integer year;
+  private String descriuption;
 
   // Constructor
-  public Book(Integer id, String name, String author, String genre, Integer year) {
+  public Book(Integer id, String name, String author, String genre, Integer year, String description) {
     this.id = id;
     this.name = name;
     this.author = author;
     this.genre = genre;
     this.year = year;
+    this.descriuption = description;
   }
 
-  // Getters and setters
   public Integer getId() {
-    return id;
+    return this.id;
   }
 
   public void setId(Integer id) {
@@ -26,7 +27,7 @@ public class Book {
   }
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public void setName(String name) {
@@ -34,7 +35,7 @@ public class Book {
   }
 
   public String getAuthor() {
-    return author;
+    return this.author;
   }
 
   public void setAuthor(String author) {
@@ -42,7 +43,7 @@ public class Book {
   }
 
   public String getGenre() {
-    return genre;
+    return this.genre;
   }
 
   public void setGenre(String genre) {
@@ -50,10 +51,19 @@ public class Book {
   }
 
   public Integer getYear() {
-    return year;
+    return this.year;
   }
 
   public void setYear(Integer year) {
     this.year = year;
   }
+
+  public String getDescriuption() {
+    return this.descriuption;
+  }
+
+  public void setDescriuption(String descriuption) {
+    this.descriuption = descriuption;
+  }
+
 }

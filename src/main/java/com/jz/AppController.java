@@ -1,5 +1,6 @@
 package com.jz;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -58,6 +60,9 @@ public class AppController {
 
   @FXML
   private TextField newBookYear;
+
+  @FXML
+  private TextField newBookDescription;
 
   @FXML
   private Label statusLabel;
@@ -110,7 +115,8 @@ public class AppController {
             res.getString("bookName"),
             res.getString("bookAuthor"),
             res.getString("bookGenre"),
-            res.getInt("bookYear"));
+            res.getInt("bookYear"),
+            res.getString("bookDescription"));
         booksList.add(book);
       }
       con.close();
@@ -120,12 +126,14 @@ public class AppController {
   }
 
   private Boolean addBook() {
-    String sql = "INSERT INTO books (bookName, bookAuthor, bookGenre, bookYear) VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO books (bookName, bookAuthor, bookGenre, bookYear, bookDescription) VALUES (?, ?, ?, ?,?)";
     try (Connection con = Database.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
       statement.setString(1, newBookName.getText());
       statement.setString(2, newBookAuthor.getText());
       statement.setString(3, newBookGenre.getText());
       statement.setInt(4, Integer.parseInt(newBookYear.getText()));
+      statement.setString(5, newBookDescription.getText());
+      // TODO add description and add field
       int rowsInserted = statement.executeUpdate();
       if (rowsInserted > 0) {
         statusLabel.setText("A new book was added successfully!");
@@ -149,6 +157,7 @@ public class AppController {
         newBookAuthor,
         newBookGenre,
         newBookYear,
+        newBookDescription
     };
     // TODO add field type check
     for (TextField field : fields) {
@@ -184,4 +193,11 @@ public class AppController {
     }
   }
 
+  @FXML
+  void onViewBook(ActionEvent event) throws IOException {
+    if (booksTable.getSelectionModel().selectedItemProperty().isNull() == null)
+      return;
+    Context.getInstance().setSelectedBookId(booksTable.getSelectionModel().getSelectedItem().getId());
+    App.setRoot("ViewBook");
+  }
 }
