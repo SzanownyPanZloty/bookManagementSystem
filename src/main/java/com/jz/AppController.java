@@ -80,13 +80,22 @@ public class AppController {
       filteredBooksList.setPredicate(book -> {
         if (newValue == null || newValue.isEmpty())
           return true;
-        String properties[] = { book.getName(), book.getAuthor(), book.getGenre(), book.getYear().toString() };
+
+        // all boook properties without description because it's not displayed in any
+        // column
+        String properties[] = { book.getId().toString(), book.getName(), book.getAuthor(), book.getGenre(),
+            book.getYear().toString() };
+
+        // check if property matches search string
         for (String property : properties) {
+
           try {
+            // presume that search field is valid regex
             Pattern pattern = Pattern.compile(newValue, Pattern.CASE_INSENSITIVE);
             if (pattern.matcher(property).find())
               return true;
           } catch (PatternSyntaxException e) {
+            // if the search string is not regex
             if (property.toLowerCase().contains(newValue.toLowerCase()))
               return true;
           } catch (Exception e) {
@@ -97,11 +106,16 @@ public class AppController {
       });
     });
 
+    // make filtered list sortable using table columns
     sortedData.comparatorProperty().bind(booksTable.comparatorProperty());
+
     booksTable.setItems(sortedData);
 
   }
 
+  /**
+   * Fetch books from the database and set them to the booksList
+   */
   private void fetchBooks() {
     try {
       booksList.clear();
@@ -125,6 +139,11 @@ public class AppController {
     }
   }
 
+  /**
+   * Add a book to the database
+   * 
+   * @return true if the book was added successfully, false otherwise
+   */
   private Boolean addBook() {
     String sql = "INSERT INTO books (bookName, bookAuthor, bookGenre, bookYear, bookDescription) VALUES (?, ?, ?, ?,?)";
     try (Connection con = Database.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
@@ -159,18 +178,23 @@ public class AppController {
         newBookDescription
     };
 
+    // check if yearField is not a number
     try {
       Integer.parseInt(newBookYear.getText());
     } catch (NumberFormatException ex) {
       return;
     }
 
+    // check if any field is empty
     for (TextField field : fields) {
       if (field.getText().isBlank()) {
         return;
       }
     }
+
     addBook();
+
+    // clear all fields
     for (TextField field : fields) {
       field.setText("");
     }

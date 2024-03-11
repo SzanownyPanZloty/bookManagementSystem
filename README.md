@@ -5,30 +5,37 @@ Book management system is a simple **Java** application where you can fetch, add
 ## Table of Contents
 - [1. Book Management System](#1-book-management-system)
   - [Table of Contents](#table-of-contents)
-  - [TODO](#todo)
   - [Features](#features)
-  - [Libraries used](#libraries-used)
-  - [Instalation](#instalation)
+  - [Java Libraries used](#java-libraries-used)
+  - [How to run the project](#how-to-run-the-project)
+    - [Prerequisites](#prerequisites)
+    - [Instalation](#instalation)
 
-
-## TODO
-- add year field type validation
 
 ## Features
 
-- Search for books using words and **regular expressions**.
-- Sort books based on various criteria **(e.g., title, author, publication year, genre)**.
-- Add books using menu on left side.
-- Remove books by right clicking and selecting `Remove book`.
-- Display information about books by right clicking and selecting `View book`.
+- **Search for Books**: The application allows you to search for books using words and regular expressions.
+- **Sort Books**: You can sort books based on various criteria such as title, author, publication year, and genre.
+- **Add Books**: You can add new books to the system using a menu on the left side of the application.
+- **Remove Books**: You can remove books from the system by right-clicking on a book and selecting 'Remove book'.
+- **View Book Information**: You can view detailed information about a book by right-clicking on a book and selecting 'View book'.
 
-## Libraries used
-- JavaFX
-- MySQL Connector
 
-## Instalation
+## Java Libraries used
+- **JavaFX**: Used for creating the graphical user interface of the application.
+- **MySQL Connector**: Used for connecting the Java application to the MySQL database.
 
-In order to run this project you need **Appache Maven** to be installed on your computer ([Click this link if you need help with instaling Maven](https://maven.apache.org/install.html)). If Maven is installed follow these steps:
+
+## How to run the project
+
+### Prerequisites
+
+- Java 21 *(Older versions were not tested)*
+- Appache Maven
+
+[Click this link if you need help with instaling Maven](https://maven.apache.org/install.html). If You have Maven installed, follow these steps:
+
+### Instalation
 
 **1. Clone git repository**
 ```bash
@@ -44,14 +51,14 @@ String username = "YOUR_DATABASE_USERNAME";
 String password = "YOUR_DATABASE_PASSWORD";
 ```
 
-
-**4. Compile dependencies**
+**4. Build the project**
+Build the project using the command:
 ```bash
 mvn clean install
 ```
-Maven is going to install all [external libraries](#libraries-used) for you
+Maven will automatically install all the necessary external libraries for you.
 
-**5. Run the program**
+**5. Run the project**
 ```bash
 mvn clean javafx:run
 ```

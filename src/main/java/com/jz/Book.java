@@ -8,7 +8,6 @@ public class Book {
   private Integer year;
   private String descriuption;
 
-  // Constructor
   public Book(Integer id, String name, String author, String genre, Integer year, String description) {
     this.id = id;
     this.name = name;
