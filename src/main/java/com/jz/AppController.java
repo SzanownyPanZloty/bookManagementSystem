@@ -158,7 +158,13 @@ public class AppController {
         newBookYear,
         newBookDescription
     };
-    // TODO add field type check
+
+    try {
+      Integer.parseInt(newBookYear.getText());
+    } catch (NumberFormatException ex) {
+      return;
+    }
+
     for (TextField field : fields) {
       if (field.getText().isBlank()) {
         return;
