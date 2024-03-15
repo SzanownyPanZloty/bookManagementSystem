@@ -1,5 +1,5 @@
-CREATE Database 'booksDB';
-use 'booksDB'; 
+CREATE Database booksDB;
+use booksDB;
 
 DROP TABLE IF EXISTS `books`;
 create table books
