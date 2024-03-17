@@ -1,6 +1,6 @@
 # 1. Book Management System
 
-Book management system is a simple **Java** application where you can fetch, add and delete books. **JavaFX** library GUI allows you to interact with data stored in **MySQL** database.
+Book management system is a simple **Java** application where you can display, add and delete books. **JavaFX** library GUI allows you to interact with data stored in **MySQL** database.
 
 ## Table of Contents
 - [1. Book Management System](#1-book-management-system)
@@ -23,6 +23,7 @@ Book management system is a simple **Java** application where you can fetch, add
 
 ## Java Libraries used
 - **JavaFX**: Used for creating the graphical user interface of the application.
+- **AtlantaFX**: Used for styling default look of JavaFX GUI.
 - **MySQL Connector**: Used for connecting the Java application to the MySQL database.
 
 
@@ -30,8 +31,9 @@ Book management system is a simple **Java** application where you can fetch, add
 
 ### Prerequisites
 
-- Java 21 *(Older versions were not tested)*
+- Java 21 *(Older versions might work but were not tested)*
 - Appache Maven
+- MySQL Server
 
 [Click this link if you need help with instaling Maven](https://maven.apache.org/install.html). If You have Maven installed, follow these steps:
 
@@ -43,10 +45,11 @@ git clone https://github.com/SzanownyPanZloty/bookManagementSystem.git
 ```
 
 **2. Execute `Database.sql` on your MySQL Server**
+Database contains 25 randomly generated books
 
 **3. Edit `Database.java` file**
 ```java
-String url = "jdbc:mysql://localhost:3306/YOUR_DATABASE_NAME"; //booksDB if you didn't change Database.sql file
+String url = "jdbc:mysql://localhost:3306/YOUR_DATABASE_NAME"; //booksDB if you did not modify `Database.sql` file
 String username = "YOUR_DATABASE_USERNAME";
 String password = "YOUR_DATABASE_PASSWORD";
 ```

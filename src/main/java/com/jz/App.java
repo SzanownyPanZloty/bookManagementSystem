@@ -5,8 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+
+import atlantafx.base.theme.PrimerDark;
 
 /**
  * JavaFX App
@@ -23,6 +24,7 @@ public class App extends Application {
      * @throws IOException
      */
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
         scene = new Scene(loadFXML("App"), 900, 600);
         stage.setScene(scene);
         stage.show();

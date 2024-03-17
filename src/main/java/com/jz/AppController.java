@@ -1,12 +1,5 @@
 package com.jz;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -74,7 +69,7 @@ public class AppController {
     bookGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
     bookYearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-    fetchBooks();
+    updateBooks();
 
     bookSearch.textProperty().addListener((observable, oldValue, newValue) -> {
       filteredBooksList.setPredicate(book -> {
@@ -114,57 +109,55 @@ public class AppController {
   }
 
   /**
-   * Fetch books from the database and set them to the booksList
+   * Fetches books from the database and updates the booksList.
    */
-  private void fetchBooks() {
+  private void updateBooks() {
     try {
       booksList.clear();
-      Connection con = Database.getConnection();
-      Statement st = con.createStatement();
-      String sql = "SELECT * FROM books";
-      ResultSet res = st.executeQuery(sql);
-      while (res.next()) {
-        Book book = new Book(
-            res.getInt("bookId"),
-            res.getString("bookName"),
-            res.getString("bookAuthor"),
-            res.getString("bookGenre"),
-            res.getInt("bookYear"),
-            res.getString("bookDescription"));
+      List<Book> books = Database.fetchBooks();
+      for (Book book : books) {
         booksList.add(book);
       }
-      con.close();
-    } catch (SQLException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
   /**
-   * Add a book to the database
+   * Changes the status label text and style.
    * 
-   * @return true if the book was added successfully, false otherwise
+   * @param success if the operation was successful
+   * @param message the message to display
    */
-  private Boolean addBook() {
-    String sql = "INSERT INTO books (bookName, bookAuthor, bookGenre, bookYear, bookDescription) VALUES (?, ?, ?, ?,?)";
-    try (Connection con = Database.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
-      statement.setString(1, newBookName.getText());
-      statement.setString(2, newBookAuthor.getText());
-      statement.setString(3, newBookGenre.getText());
-      statement.setInt(4, Integer.parseInt(newBookYear.getText()));
-      statement.setString(5, newBookDescription.getText());
-      int rowsInserted = statement.executeUpdate();
-      if (rowsInserted > 0) {
-        statusLabel.setText("A new book was added successfully!");
-        fetchBooks();
-        return true;
-      }
-      con.close();
-      return false;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    } catch (Exception e) {
-      return false;
+  private void changeStatusLabel(Boolean success, String message) {
+    statusLabel.getStyleClass().remove("success");
+    statusLabel.getStyleClass().remove("danger");
+    if (success) {
+      statusLabel.getStyleClass().add("success");
+    } else {
+      statusLabel.getStyleClass().add("danger");
+    }
+    statusLabel.setText(message);
+  }
+
+  /**
+   * Adds a new book to the database.
+   */
+  private void addBook() {
+
+    boolean handler = Database.addBook(
+        newBookName.getText(),
+        newBookAuthor.getText(),
+        newBookGenre.getText(),
+        Integer.parseInt(newBookYear.getText()),
+        newBookDescription.getText());
+
+    if (handler) {
+      changeStatusLabel(true, "A new book was added successfully!");
+      updateBooks();
+      return;
+    } else {
+      changeStatusLabel(false, "An error occurred while adding a new book.");
     }
   }
 
@@ -178,18 +171,20 @@ public class AppController {
         newBookDescription
     };
 
+    // check if any field is empty
+    for (TextField field : fields) {
+      if (field.getText().isBlank()) {
+        changeStatusLabel(false, "All fields are required.");
+        return;
+      }
+    }
+
     // check if yearField is not a number
     try {
       Integer.parseInt(newBookYear.getText());
     } catch (NumberFormatException ex) {
+      changeStatusLabel(false, "Year must be a number.");
       return;
-    }
-
-    // check if any field is empty
-    for (TextField field : fields) {
-      if (field.getText().isBlank()) {
-        return;
-      }
     }
 
     addBook();
@@ -204,21 +199,17 @@ public class AppController {
   void onDeleteBook(ActionEvent event) {
     if (booksTable.getSelectionModel().selectedItemProperty().isNull() == null)
       return;
-    String sql = "DELETE FROM books WHERE bookId = ?";
-    try (Connection con = Database.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
-      statement.setString(1, String.valueOf(booksTable.getSelectionModel().getSelectedItem().getId()));
-      int rowsInserted = statement.executeUpdate();
-      if (rowsInserted > 0) {
-        fetchBooks();
+    Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
+    try {
+      Boolean handler = Database.deleteBook(selectedBook.getId());
+      if (!handler) {
+        changeStatusLabel(false, "An error occurred while deleting the book.");
         return;
       }
-      con.close();
-      return;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return;
+      changeStatusLabel(true, "Book was deleted successfully!");
+      updateBooks();
     } catch (Exception e) {
-      return;
+      e.printStackTrace();
     }
   }
 
@@ -226,7 +217,8 @@ public class AppController {
   void onViewBook(ActionEvent event) throws IOException {
     if (booksTable.getSelectionModel().selectedItemProperty().isNull() == null)
       return;
-    Context.getInstance().setSelectedBookId(booksTable.getSelectionModel().getSelectedItem().getId());
+    Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
+    Context.getInstance().setSelectedBookId(selectedBook.getId());
     App.setRoot("ViewBook");
   }
 }

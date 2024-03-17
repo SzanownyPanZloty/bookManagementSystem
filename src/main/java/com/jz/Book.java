@@ -6,7 +6,7 @@ public class Book {
   private String author;
   private String genre;
   private Integer year;
-  private String descriuption;
+  private String description;
 
   public Book(Integer id, String name, String author, String genre, Integer year, String description) {
     this.id = id;
@@ -14,7 +14,7 @@ public class Book {
     this.author = author;
     this.genre = genre;
     this.year = year;
-    this.descriuption = description;
+    this.description = description;
   }
 
   public Integer getId() {
@@ -57,12 +57,12 @@ public class Book {
     this.year = year;
   }
 
-  public String getDescriuption() {
-    return this.descriuption;
+  public String getDescription() {
+    return this.description;
   }
 
-  public void setDescriuption(String descriuption) {
-    this.descriuption = descriuption;
+  public void setdescription(String description) {
+    this.description = description;
   }
 
 }

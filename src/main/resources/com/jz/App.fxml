@@ -11,75 +11,41 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jz.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jz.AppController">
    <children>
-      <SplitPane dividerPositions="0.3" layoutX="-58.0" layoutY="-40.0" prefHeight="400.0"
-         prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.3" layoutX="-58.0" layoutY="-40.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="170.0"
-                     prefWidth="163.0" text="Add new book" textAlignment="CENTER" wrapText="true"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="5.0" />
-                  <TextField fx:id="newBookName" layoutX="-5.0" layoutY="2.0" promptText="Name"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="30.0" />
-                  <TextField fx:id="newBookAuthor" layoutX="15.0" layoutY="15.0" promptText="Author"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="60.0" />
-                  <TextField fx:id="newBookYear" layoutX="15.0" layoutY="45.0" promptText="Year"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="90.0" />
-                  <TextField fx:id="newBookGenre" layoutX="15.0" layoutY="75.0" promptText="Genre"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="120.0" />
-                  <TextField fx:id="newBookDescription" layoutX="10.0" layoutY="160.0"
-                     promptText="Description"
-                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="150.0" />
-                  <Button layoutX="61.0" layoutY="129.0" mnemonicParsing="false"
-                     onAction="#addBookButtonClicked" text="Add book" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0" />
-                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER"
-                     layoutX="10.0" layoutY="160.0" prefWidth="163.0" textAlignment="CENTER"
-                     wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                     AnchorPane.topAnchor="210.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="170.0" prefWidth="163.0" styleClass="text-caption" text="Add new book" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+                  <TextField fx:id="newBookName" layoutX="-5.0" layoutY="2.0" promptText="Name" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <TextField fx:id="newBookAuthor" layoutX="12.0" layoutY="171.0" promptText="Author" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                  <TextField fx:id="newBookYear" layoutX="12.0" layoutY="201.0" promptText="Year" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
+                  <TextField fx:id="newBookGenre" layoutX="12.0" layoutY="231.0" promptText="Genre" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
+                  <TextField fx:id="newBookDescription" layoutX="12.0" layoutY="261.0" promptText="Description" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0" />
+                  <Button layoutX="12.0" layoutY="291.0" mnemonicParsing="false" onAction="#addBookButtonClicked" styleClass="accent" text="Add book" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0" />
+                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="160.0" prefWidth="163.0" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TextField fx:id="bookSearch" layoutX="-23.0" layoutY="25.0"
-                     promptText="Search books (Regex supported)" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <TableView fx:id="booksTable" layoutX="-28.0" layoutY="11.0" prefHeight="388.0"
-                     prefWidth="409.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <TextField fx:id="bookSearch" layoutX="-23.0" layoutY="25.0" promptText="Search books (Regex supported)" styleClass="text-bold" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                  <TableView fx:id="booksTable" layoutX="-28.0" layoutY="11.0" prefHeight="388.0" prefWidth="409.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn id="bookIdColumn" fx:id="bookIdColumn" prefWidth="34.0"
-                           text="ID" />
-                        <TableColumn id="bookNameColumn" fx:id="bookNameColumn" prefWidth="120.0"
-                           text="Name" />
-                        <TableColumn id="bookAuthorColumn" fx:id="bookAuthorColumn" prefWidth="96.0"
-                           text="Author" />
-                        <TableColumn id="bookYearColumn" fx:id="bookYearColumn" prefWidth="49.5"
-                           text="Year" />
-                        <TableColumn id="bookGenreColumn" fx:id="bookGenreColumn" prefWidth="100.5"
-                           text="Genre" />
+                        <TableColumn id="bookIdColumn" fx:id="bookIdColumn" prefWidth="34.0" text="ID" />
+                        <TableColumn id="bookNameColumn" fx:id="bookNameColumn" prefWidth="120.0" text="Name" />
+                        <TableColumn id="bookAuthorColumn" fx:id="bookAuthorColumn" prefWidth="96.0" text="Author" />
+                        <TableColumn id="bookYearColumn" fx:id="bookYearColumn" prefWidth="49.5" text="Year" />
+                        <TableColumn id="bookGenreColumn" fx:id="bookGenreColumn" prefWidth="100.5" text="Genre" />
                      </columns>
                      <contextMenu>
                         <ContextMenu>
                            <items>
-                              <MenuItem mnemonicParsing="false" onAction="#onViewBook"
-                                 text="View book" />
-                              <MenuItem mnemonicParsing="false" onAction="#onDeleteBook"
-                                 text="Delete book" />
+                              <MenuItem mnemonicParsing="false" onAction="#onViewBook" text="View book" />
+                              <MenuItem mnemonicParsing="false" onAction="#onDeleteBook" text="Delete book" />
                            </items>
                         </ContextMenu>
                      </contextMenu>

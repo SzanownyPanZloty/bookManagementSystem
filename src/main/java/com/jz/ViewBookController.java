@@ -1,10 +1,6 @@
 package com.jz;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,20 +19,12 @@ public class ViewBookController {
   }
 
   public void initialize() {
-    String sql = "SELECT bookName, bookDescription FROM books WHERE bookId = ?";
-    try (Connection con = Database.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
-      statement.setString(1, String.valueOf(Context.getInstance().getSelectedBookId()));
-      ResultSet rs = statement.executeQuery();
-      rs.next();
-      bookName.setText(rs.getString("bookName"));
-      bookDescription.setText(rs.getString("bookDescription"));
-      con.close();
-      return;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return;
+    try {
+      Book book = Database.fetchBook(Context.getInstance().getSelectedBookId());
+      bookName.setText(book.getName());
+      bookDescription.setText(book.getDescription());
     } catch (Exception e) {
-      return;
+      e.printStackTrace();
     }
   }
 
