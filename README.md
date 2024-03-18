@@ -26,6 +26,10 @@ Book management system is a simple **Java** application where you can display, a
 <p align="center">
   <img src="img/app.jpg" />
   </br>
+  </br>
+  <img src="img/options.jpg" />
+  </br>
+  </br>
   <img src="img/details.jpg" />
 </p>
 
