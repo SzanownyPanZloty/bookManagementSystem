@@ -1,11 +1,11 @@
 # 1. Book Management System
-
 Book management system is a simple **Java** application where you can display, add and delete books. **JavaFX** library GUI allows you to interact with data stored in **MySQL** database.
 
 ## Table of Contents
 - [1. Book Management System](#1-book-management-system)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Images](#images)
   - [Java Libraries used](#java-libraries-used)
   - [How to run the project](#how-to-run-the-project)
     - [Prerequisites](#prerequisites)
@@ -20,6 +20,14 @@ Book management system is a simple **Java** application where you can display, a
 - **Remove Books**: You can remove books from the system by right-clicking on a book and selecting 'Remove book'.
 - **View Book Information**: You can view detailed information about a book by right-clicking on a book and selecting 'View book'.
 
+## Images
+
+</br>
+<p align="center">
+  <img src="img/app.jpg" />
+  </br>
+  <img src="img/details.jpg" />
+</p>
 
 ## Java Libraries used
 - **JavaFX**: Used for creating the graphical user interface of the application.
