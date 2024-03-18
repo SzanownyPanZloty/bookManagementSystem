@@ -27,6 +27,7 @@ public class App extends Application {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
         scene = new Scene(loadFXML("App"), 900, 600);
         stage.setScene(scene);
+        stage.setTitle("Book Management System");
         stage.show();
     }
 
